@@ -3,6 +3,7 @@ title NyanMBR
 color 0a
 
 :Check
+if not exists Build md Build >nul
 if exist disk.img goto QEMU
 if exist Build\frames.bin del Build\frames.bin /F /Q >nul
 if exist Build\song.bin del Build\song.bin /F /Q >nul
