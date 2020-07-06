@@ -6,7 +6,7 @@ PAYLOADHOST(payloadCrazyBus) {
 	WAVEFORMATEX fmt = { WAVE_FORMAT_PCM, 1, 44100, 44100, 1, 8, 0 };
 
 	HWAVEOUT hwo;
-	waveOutOpen(&hwo, WAVE_MAPPER, &fmt, NULL, NULL, CALLBACK_NULL);
+	waveOutOpen(&hwo, WAVE_MAPPER, &fmt, 0, 0, CALLBACK_NULL);
 
 	const int bufsize = 44100 * 30; // 30 Seconds
 	char *wavedata = (char *)LocalAlloc(0, bufsize);

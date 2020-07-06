@@ -1,4 +1,6 @@
+#ifndef UNICODE
 #define UNICODE
+#endif
 
 #include "../Build/Mode.h"
 
@@ -18,7 +20,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #define WINDOWHEIGHT ROWS * BTNHEIGHT + (ROWS + 1)*SPACE + 32
 #endif
 
-
+#define _WIN32_WINNT 0x501
 #include <windows.h>
 #include <tlhelp32.h>
 #include <shlwapi.h>

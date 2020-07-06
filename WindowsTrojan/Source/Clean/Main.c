@@ -51,8 +51,8 @@ void start() {
 			mainWindow, NULL, (HINSTANCE)GetWindowLong(mainWindow, GWL_HINSTANCE), NULL);
 		SendMessage(payloads[p].btn, WM_SETFONT, (WPARAM)font, TRUE);
 
-		CreateThread(NULL, NULL, payloads[p].payloadHost, &payloads[p], NULL, NULL);
-		//CreateThread(NULL, NULL, &payloadThread, &payloads[p], NULL, NULL);
+		CreateThread(NULL, 0, payloads[p].payloadHost, &payloads[p], 0, 0);
+		//CreateThread(NULL, 0, &payloadThread, &payloads[p], 0, 0);
 	}
 
 	SendMessage(mainWindow, WM_SETFONT, (WPARAM)font, TRUE);
@@ -60,7 +60,7 @@ void start() {
 	ShowWindow(mainWindow, SW_SHOW);
 	UpdateWindow(mainWindow);
 	
-	CreateThread(NULL, NULL, &keyboardThread, NULL, NULL, NULL);
+	CreateThread(NULL, 0, &keyboardThread, NULL, 0, NULL);
 
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0) > 0) {
@@ -76,7 +76,7 @@ LRESULT CALLBACK mainWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
 	HDC hdc;
 	
 	if (msg == WM_ACTIVATE) {
-		if (wParam == NULL)
+		if (!wParam)
 			dialog = NULL;
 		else
 			dialog = hwnd;

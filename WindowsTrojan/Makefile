@@ -1,8 +1,13 @@
-CC = i686-w64-mingw32-gcc
-PYTHON = python2
+ifeq ($(CC),cc)
+CC = i586-mingw32msvc-gcc
+endif
+PYTHON ?= python
 
-CCFLAGS = -nostdlib -nodefaultlibs -std=c99 -Wl,-e_start -s -mwindows -m32 -municode -Os -w -march=i486
+CCFLAGS = -nostdlib -nodefaultlibs -std=c99 -Wl,-e,_start,--subsystem,windows -s -m32 -D _UNICODE -D UNICODE -Os -march=i486
 LIBS    = -luser32 -lkernel32 -lgdi32 -lwinmm -lcomctl32 -ladvapi32 -lshell32 -lpsapi
+
+# gcc(1) may use memcpy(3) to copy struct
+LIBS += -lmsvcrt
 
 # Don't change the build directory, it is hardcoded on other places
 BUILDDIR = Build
